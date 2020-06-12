@@ -1,8 +1,8 @@
-# Welcome to the Summer 2020 UROP for "Making Books" Materials!
+## Welcome to the Summer 2020 UROP for "Making Books" Materials!
 
 At the moment, this is only a sketch! To keep track of our work, we'll keep a running calendar below.
 
-## **Current Schedule**
+### **Current Schedule**
 
 Week/Dates   | Topics
 ------------ | -------------
