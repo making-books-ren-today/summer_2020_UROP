@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to the Summer 2020 UROP for "Making Books: The Renaissance and Today"!
 
 You can use the [editor on GitHub](https://github.com/making-books-ren-today/summer_2020_UROP/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
