@@ -6,9 +6,6 @@ At the moment, this is only a sketch! To keep track of our work,
 
 Week/Dates   | Topics
 ------------ | -------------
-Week 1       | Introduction
+Week 1       | Introduction/Omeka
 Week 2       | Django
------------- | -------------
------------- | -------------
------------- | -------------
------------- | -------------
+
