@@ -9,6 +9,7 @@ Week/Dates   | Topics
 Week 1       | Introduction/Omeka
 Week 2       | Django
 
+<br /><br />
 
 ### **For Tuesday, June 16 (10 a.m.)**
 
