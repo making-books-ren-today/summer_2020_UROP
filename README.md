@@ -1,8 +1,8 @@
-## Welcome to the Summer 2020 UROP for "Making Books" Materials!
+# Welcome to the Summer 2020 UROP for "Making Books" Materials!
 
 At the moment, this is only a sketch! To keep track of our work, we'll keep a running calendar below.
 
-### **Current Schedule**
+## **Current Schedule**
 
 Week/Dates   | Topics
 ------------ | -------------
@@ -10,7 +10,7 @@ Week 1       | Introduction/Omeka
 Week 2       | Django
 
 
-## **For Tuesday, June 16 (10 a.m.)**
+### **For Tuesday, June 16 (10 a.m.)**
 
 - [Install Django](https://docs.djangoproject.com/en/3.0/intro/install/), create a [virtual environment](https://docs.python.org/3/tutorial/venv.html), and follow the [tutorials](https://docs.djangoproject.com/en/3.0/intro/) to create a project
 	- For next time: Tutorials 1-2 (3, if time permits)
