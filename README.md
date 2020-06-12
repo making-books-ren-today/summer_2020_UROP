@@ -16,7 +16,6 @@ Week 2       | Django
 	- For next time: Tutorials 1-2 (3, if time permits)
 	- Will look next time at [Django project structure](https://django-project-skeleton.readthedocs.io/en/latest/structure.html) and think about our data model (levels of granularity, vocabularies)
     -	EB: will also address databases
-<br/>
 
 - Continue reviewing the sites introduced today
 	- Use Murray if helpful to you! And keep the [Clark Library’s “Why Django?”](https://clarklabs.lib.umich.edu/2015/12/05/django-for-digital-humanities/) rationale in mind—they wanted:
@@ -24,7 +23,6 @@ Week 2       | Django
         	- a flexible data structure
         	- easy content upload capabilities so the researcher and students could upload information
 	- How might we view the sample sites as using these capabilities?
-<br/>
 
 - Compare with the [codebases](https://github.com/making-books-ren-today): what aspects might we want to use? Here are direct links to these four Django DH sites:
 
