@@ -22,7 +22,7 @@ Week 2       | Django
         -	to house a large data set
         -	a flexible data structure
         -	easy content upload capabilities so the researcher and students could upload information
-    -	Do the sample sites seem to use these capabilities? How so/not?
+    -	How might we view the sample sites as using these capabilities?
 
 -	Compare with the [codebases](https://github.com/making-books-ren-today) (cloned on this site): what aspects might we want to use? Here are direct links to these four Django DH sites:
 
