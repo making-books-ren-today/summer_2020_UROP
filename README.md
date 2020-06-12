@@ -24,7 +24,7 @@ Week 2       | Django
         -	easy content upload capabilities so the researcher and students could upload information
     -	How might we view the sample sites as using these capabilities?
 
--	Compare with the [codebases](https://github.com/making-books-ren-today) (cloned on this site): what aspects might we want to use? Here are direct links to these four Django DH sites:
+-	Compare with the [codebases](https://github.com/making-books-ren-today): what aspects might we want to use? Here are direct links to these four Django DH sites:
 
     -	”Archival History of Computing at MIT, 1950-62” (MIT DH Lab):
 	https://comphist.digitalhumanitiesmit.org/archives/  
