@@ -15,8 +15,8 @@ Week 2       | Django
 - [Install Django](https://docs.djangoproject.com/en/3.0/intro/install/), create a [virtual environment](https://docs.python.org/3/tutorial/venv.html), and follow the [tutorials](https://docs.djangoproject.com/en/3.0/intro/) to create a project
 	- For next time: Tutorials 1-2 (3, if time permits)
 	- Will look next time at [Django project structure](https://django-project-skeleton.readthedocs.io/en/latest/structure.html) and think about our data model (levels of granularity, vocabularies)
-    -	EB: will also address databases
-<br /><br /><br />
+    -	EB: will also address databases...
+<br /><br />
     
 
 - Continue reviewing the sites introduced today
