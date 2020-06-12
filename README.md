@@ -1,4 +1,4 @@
-## Welcome to the Summer 2020 UROP for "Making Books: The Renaissance and Today"!
+## Welcome to the Summer 2020 UROP for "Making Books" Materials!
 
 At the moment, this is only a sketch! To keep track of our work, 
 
