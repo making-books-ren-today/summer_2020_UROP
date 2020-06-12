@@ -18,7 +18,7 @@ Week 2       | Django
     -	EB: will also address databases
 
 -	Continue reviewing the sites introduced today
-    -	Use [Murray](https://drive.google.com/file/d/14RFG_DJ00WN_SRUfut_52tJxQBrkYDDr/view?usp=sharing) if helpful to you! And keep the [Clark Library’s “Why Django?”](https://clarklabs.lib.umich.edu/2015/12/05/django-for-digital-humanities/) rationale in mind—they wanted:
+    -	Use Murray if helpful to you! And keep the [Clark Library’s “Why Django?”](https://clarklabs.lib.umich.edu/2015/12/05/django-for-digital-humanities/) rationale in mind—they wanted:
         -	to house a large data set
         -	a flexible data structure
         -	easy content upload capabilities so the researcher and students could upload information
