@@ -28,11 +28,11 @@ Week 2       | Django
 - Compare with the [codebases](https://github.com/making-books-ren-today): what aspects might we want to use? Here are direct links to these four Django DH sites:
 
     -	”Archival History of Computing at MIT, 1950-62” (MIT DH Lab):
-	https://comphist.digitalhumanitiesmit.org/archives/  
+	[https://comphist.digitalhumanitiesmit.org/archives/]
     - “The Reading Redux” (MIT DH Lab):
-	https://rereading.dhmit.xyz  
+	[https://rereading.dhmit.xyz]  
     - “Shakespeare and Company Project” (Princeton CDH):
-	https://shakespeareandco.princeton.edu
+	[https://shakespeareandco.princeton.edu]
     - “Derrida’s Margins” (Princeton CDH):
-	https://derridas-margins.princeton.edu 
+	[https://derridas-margins.princeton.edu]
 
