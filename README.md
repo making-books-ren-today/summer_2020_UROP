@@ -45,6 +45,7 @@ Week 3       | Django + code review + data modeling
 - Brainstorm features to aid analysis: 
 	- for assignment 1 (on material features)  
 	- for assignments 2-3 (potentially, on English contexts and comparisons)
+- Brainstorm (and put in Slack) questions for our librarians, esp. about vocabularies/data modeling
 
 ### **Resources**
 - [GitHub tutorials](https://guides.github.com)
