@@ -42,4 +42,4 @@ Week 3       | Django + code review + data modeling
 ### For Tuesday, June 23
 - Complete Django tutorials 5-7
 - Review comphist code repo
-- Brainstorm features that would aid analysis: for assignment 1 (on material features) and assignments 2-3 (potentially, on English contexts and comparisons)
+- Brainstorm features to aid analysis: for assignment 1 (on material features) and assignments 2-3 (potentially, on English contexts and comparisons)
