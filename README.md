@@ -14,7 +14,7 @@ Week 3       | Django + code review + data modeling
 
 ### **For Tuesday, June 16**
 
-- [Install Django](https://docs.djangoproject.com/en/3.0/intro/install/), create a [virtual environment](https://docs.djangoproject.com/en/3.0/intro/contributing/), under "Getting a copy of Django's development version," and follow the [tutorials](https://docs.djangoproject.com/en/3.0/intro/) to create a project
+- [Install Django](https://docs.djangoproject.com/en/3.0/intro/install/), create a [virtual environment](https://docs.djangoproject.com/en/3.0/intro/contributing/) (as detailed under "Getting a copy of Django's development version"), and follow the [tutorials](https://docs.djangoproject.com/en/3.0/intro/) to create a project
 	- For next time: Tutorials 1-2 (3, if time permits)
 	- Will look next time at [Django project structure](https://django-project-skeleton.readthedocs.io/en/latest/structure.html) and think about our data model (levels of granularity, vocabularies)
     -	EB: will also address databases...  <br /><br />
