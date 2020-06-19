@@ -41,5 +41,5 @@ Week 3       | Django + code review + data modeling
 
 ### **For Tuesday, June 23**
 - Complete Django tutorials 5-7
-- Review comphist code repo
+- Review [comphist code repo](https://github.com/making-books-ren-today/test_eval_1_comphist)
 - Brainstorm features to aid analysis: for assignment 1 (on material features) and assignments 2-3 (potentially, on English contexts and comparisons)
