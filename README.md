@@ -8,6 +8,7 @@ Week/Dates   | Topics
 ------------ | -------------
 Week 1       | Introduction/Omeka
 Week 2       | Django
+Week 3       | Django + code review + data modeling
 
 <br /><br />
 
@@ -32,3 +33,13 @@ Week 2       | Django
     - ["Shakespeare and Company Project” (Princeton CDH)](https://shakespeareandco.princeton.edu)
     - ["Derrida’s Margins" (Princeton CDH)](https://derridas-margins.princeton.edu)
 
+
+### For Friday, June 19:
+- Complete Django tutorials 3 and 4
+- Write sample models (HA: create test project)
+
+
+### For Tuesday, June 23
+- Complete Django tutorials 5-7
+- Review comphist code repo
+- Brainstorm features that would aid analysis: for assignment 1 (on material features) and assignments 2-3 (potentially, on English contexts and comparisons)
