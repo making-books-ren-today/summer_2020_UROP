@@ -12,7 +12,7 @@ Week 3       | Django + code review + data modeling
 
 <br /><br />
 
-### **For Tuesday, June 16 (10 a.m.)**
+### **For Tuesday, June 16**
 
 - [Install Django](https://docs.djangoproject.com/en/3.0/intro/install/), create a [virtual environment](https://docs.python.org/3/tutorial/venv.html), and follow the [tutorials](https://docs.djangoproject.com/en/3.0/intro/) to create a project
 	- For next time: Tutorials 1-2 (3, if time permits)
@@ -34,12 +34,12 @@ Week 3       | Django + code review + data modeling
     - ["Derrida’s Margins" (Princeton CDH)](https://derridas-margins.princeton.edu)
 
 
-### For Friday, June 19:
+### **For Friday, June 19**
 - Complete Django tutorials 3 and 4
 - Write sample models (HA: create test project)
 
 
-### For Tuesday, June 23
+### **For Tuesday, June 23**
 - Complete Django tutorials 5-7
 - Review comphist code repo
 - Brainstorm features to aid analysis: for assignment 1 (on material features) and assignments 2-3 (potentially, on English contexts and comparisons)
