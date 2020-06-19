@@ -35,7 +35,7 @@ Week 3       | Django + code review + data modeling
 
 
 ### **For Friday, June 19**
-- Complete Django tutorials 3 and 4
+- Complete [Django tutorials 3 and 4](https://docs.djangoproject.com/en/3.0/intro/tutorial03/)
 - Write sample models (HA: create test project)
 
 
