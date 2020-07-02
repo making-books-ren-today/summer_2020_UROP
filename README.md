@@ -38,6 +38,7 @@ Week 4       | Vocabularies + data modeling
 ### **For Friday, June 19**
 - Complete [Django tutorials 3 and 4](https://docs.djangoproject.com/en/3.0/intro/tutorial03/)
 - Write sample models (HA: create test project)
+- Also discussed "making kits" to work in tandem with online course developments
 
 
 ### **For Tuesday, June 23**
@@ -46,7 +47,16 @@ Week 4       | Vocabularies + data modeling
 - Brainstorm features to aid analysis: 
 	- for assignment 1 (on material features)  
 	- for assignments 2-3 (potentially, on English contexts and comparisons)
-- Brainstorm (and put in Slack) questions for our librarians, esp. about vocabularies/data modeling
+- Brainstorm (and put in Slack) questions for Emilie Hardman, esp. about vocabularies/data modeling
+
+### **For Friday, June 26**
+- Bring questions about linked open data (presentation/discussion: Ece Turnator)
+- Review further 3 sample code repos for potential features to reflect/adapt
+- Prepare to discuss applicability of existing repos for your feature(s) of the project
+
+
+
+### **For Tuesday, June 30
 
 ### **Resources**
 - [GitHub tutorials](https://guides.github.com)
