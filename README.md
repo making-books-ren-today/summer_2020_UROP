@@ -51,13 +51,16 @@ Week 4       | Vocabularies + data modeling
 
 ### **For Friday, June 26**
 - Bring questions about linked open data (presentation/discussion: Ece Turnator)
-- Consider applicability of this aspect for your dimension(s) of work with the project
+- Consider this aspect in relation to your work with the project
 
 ### **For Tuesday, June 30**
-- Review further 3 sample code repos for potential features to reflect/adapt
+- Review your understanding of APIs
+- Review the other Django-based projects, and our Omeka documentation, for aspects relevant to your focus that we might want to draw on/adapt
+- Look specifically at BIBFRAME and VRA, as vocabularies we will likely use!
 
 ### **For Tuesday, July 7**
 - Prepare to discuss applicability of existing repos for your feature(s) of the project
+
 
 ### **Resources**
 - [GitHub tutorials](https://guides.github.com)
