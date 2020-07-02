@@ -51,12 +51,13 @@ Week 4       | Vocabularies + data modeling
 
 ### **For Friday, June 26**
 - Bring questions about linked open data (presentation/discussion: Ece Turnator)
+- Consider applicability of this aspect for your dimension(s) of work with the project
+
+### **For Tuesday, June 30**
 - Review further 3 sample code repos for potential features to reflect/adapt
+
+### **For Tuesday, July 7**
 - Prepare to discuss applicability of existing repos for your feature(s) of the project
-
-
-
-### **For Tuesday, June 30
 
 ### **Resources**
 - [GitHub tutorials](https://guides.github.com)
