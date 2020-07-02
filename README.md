@@ -9,6 +9,7 @@ Week/Dates   | Topics
 Week 1       | Introduction/Omeka
 Week 2       | Django
 Week 3       | Django + code review + data modeling
+Week 4       | Vocabularies + data modeling
 
 <br /><br />
 
