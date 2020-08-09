@@ -152,10 +152,10 @@ function App() {
 											<a class='post-category post-tag-black' href='#'>
 												Bug
 											</a>
-											<a class='post-category post-tag-yellow' href='#'>
+											<a class='post-category post-tag-dark-blue' href='#'>
 												Feature
 											</a>
-											<a class='post-category post-tag-dark-blue' href='#'>
+											<a class='post-category post-tag-yellow' href='#'>
 												Meta data
 											</a>
 										</p>
@@ -174,6 +174,14 @@ function App() {
 										</p>
 									</div>
 								</section>
+								<div class='footer'>
+									<div class='footer-logo'>
+										<img
+											height='48'
+											width='100'
+											src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/1024px-MIT_logo.svg.png'></img>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
