@@ -1,0 +1,56 @@
+.square {
+  width: 100px;
+  height: 100px;
+  outline: 5px solid black;
+  background-color: lightblue;
+}
+
+.rect {
+  width: 200px;
+  height: 50px;
+  outline: 1px solid black;
+  background-color: tan;
+}
+
+
+.bigsquare {
+  width: 500px;
+  height: 500px;
+  outline: 5px solid black;
+  background-color: lightblue;
+}
+
+.book-image {
+  width: 100px;
+  height: 100px;
+}
+
+.image-container {
+  min-width: 100px;
+  min-height: 100px;
+  outline: 1px solid black;
+  background-color: white;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.component-container {
+  width: 100%;
+  border: 1px solid black;
+  padding: 5px;
+  background-color: tan;
+  border-radius: 5px;
+}
+
+.list-container {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid black;
+}
+
+.container-label {
+  background: #fdd9b5;
+}
