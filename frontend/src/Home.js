@@ -28,12 +28,12 @@ class Home extends Component {
 										</a>
 									</li>
 									<li class='nav-item'>
-										<a class='pure-button post-category post-category-js' href=''>
+										<a class='pure-button post-category post-category-js' href='/'>
 											Explore
 										</a>
 									</li>
 									<li class='nav-item'>
-										<a class='pure-button post-category post-category-js' href=''>
+										<a class='pure-button post-category post-category-js' href='/'>
 											About
 										</a>
 									</li>

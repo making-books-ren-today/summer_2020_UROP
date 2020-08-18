@@ -3,23 +3,24 @@ import React, { Component } from "react";
 import Sortable from 'sortablejs';
 import arrayMove from 'array-move';
 
-import ComponentContainer from './ComponentContainer.js'
+import ComponentContainer from './Components/ComponentContainer.js'
 
 import "./Editor.css";
+import { get, post } from "../utilities.js";
 
 class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list1: [],
+      objects: [],
       editable: true,
       view: "edit",
     };
 
   }
 
-  printlist1 = () => {
-    console.log(this.state.list1);
+  printobjects = () => {
+    console.log(this.state.objects);
   }
 
   createSortables = () => {
@@ -47,7 +48,7 @@ class Editor extends Component {
       onAdd: ((evt) => {
         var el = evt.item;
         var index = evt.newIndex;
-        var objects = this.props.list1;
+        var objects = this.props.objects;
         var dataLabel = el.dataset.label;
         var object = {'type': dataLabel, 'text': '', 'key': this.props.keyCounter};
         this.props.updateKeyCounter(this.props.keyCounter+1);
@@ -57,7 +58,7 @@ class Editor extends Component {
       }),
 
       onUpdate: ((evt) => {
-        var objects = this.props.list1;
+        var objects = this.props.objects;
         var newObjects = arrayMove(objects, evt.oldIndex, evt.newIndex);
         this.props.saveObjects(newObjects);
       }),
@@ -71,10 +72,24 @@ class Editor extends Component {
         put: false,
       }
     });
+
+    el = document.getElementById('bookslist');
+    Sortable.create(el, {
+      group: {
+        name: "book",
+        pull: "clone",
+        put: false,
+      }
+    });
   }
 
   componentDidMount() {
     this.createSortables();
+
+    get("/api/get-books").then((res) => {
+      console.log(res);
+      this.setState({ data: res });
+    });
   }
 
   deleteObject = (index) => {this.props.deleteObject(index)};
@@ -93,7 +108,7 @@ class Editor extends Component {
         <div style={{display: "inline-block", verticalAlign: "top", width: "250px", padding: "5px"}}>
         <div className="component-container">LIST</div>
         <ul id="sortablelist" className="list-container">
-          {this.props.list1.map((object, index) => {
+          {this.props.objects.map((object, index) => {
             return(
               <li key={object.key}>
                 <ComponentContainer 
@@ -114,9 +129,10 @@ class Editor extends Component {
           <li data-label="number">Number</li>
           <li data-label="block">Block</li>
           <li data-label="image">Image</li>
+          <li data-label="book">Book</li>
         </ul>
         </div>
-        <div style={{display: "inline-block", verticalAlign: "top", width: "250px", padding: "5px"}}>
+        <div style={{display: "none", verticalAlign: "top", width: "250px", padding: "5px"}}>
         <div className="component-container">IMAGES</div>
         <ul id="imagelist" className="list-container">
           <li><img className='book-image' src="https://www.goodfreephotos.com/albums/vector-images/red-book-icon-vector-clipart.png" /></li>
@@ -124,6 +140,47 @@ class Editor extends Component {
           <li><img className='book-image' src="https://cdn.pixabay.com/photo/2014/04/03/10/27/book-310519_960_720.png" /></li>
         </ul>
         </div>
+        <div style={{display: "inline-block", verticalAlign: "top", width: "250px", padding: "5px"}}>
+        <div className="component-container">BOOKS</div>
+        <ul id="bookslist" className="list-container">
+          {this.state.data ? (
+          this.state.data.entry.map((object, index) => {
+            return(
+              <li data-index={index} style={{outline: "1px solid black"}} key={index}>
+                {object.title}
+              </li>
+            );
+          })
+          ) : (
+            <></>
+          )}
+        </ul>
+        </div>
+        </div>
+        <div>
+          {this.state.data ? (
+            <table>
+            <thead>
+            <tr>
+              {this.state.data.columns.map((column) => {
+                return <th>{column.COLUMN_NAME}</th>
+              })}
+            </tr>
+            </thead>
+            <tbody>
+            {this.state.data.entry.map((row) => {
+              return (
+              <tr>
+              {Object.keys(row).map((key) => {
+                return <td>{row[key]}</td>
+              })}
+              </tr>
+            )})}
+            </tbody>
+            </table>
+          ) : (
+            <></>
+          )}
         </div>
       </>
     );

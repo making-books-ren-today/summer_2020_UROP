@@ -4,14 +4,14 @@ import Sortable from 'sortablejs';
 import arrayMove from 'array-move';
 
 import Editor from "./Editor.js";
-import Render from "./Render.js";
+import Render from "./Components/Render.js";
 import "./Editor.css";
 
 class CreatePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list1: [],
+      objects: [],
       editable: true,
       keyCounter: 0,
       view: "edit",
@@ -20,22 +20,22 @@ class CreatePage extends Component {
   }
 
   deleteObject = (index) => {
-    var objects = this.state.list1;
+    var objects = this.state.objects;
     objects.splice(index, 1);
-    this.setState({list1: objects});
-    console.log(this.state.list1);
+    this.setState({objects: objects});
+    console.log(this.state.objects);
   }
 
   saveObject = (index, object) => {
-    var objects = this.state.list1;
+    var objects = this.state.objects;
     objects[index] = object;
-    this.setState({list1: objects});
-    console.log(this.state.list1);
+    this.setState({objects: objects});
+    console.log(this.state.objects);
   }
 
   saveObjects = (objects) => {
-    this.setState({list1: objects});
-    console.log(this.state.list1);
+    this.setState({objects: objects});
+    console.log(this.state.objects);
   }
 
   updateKeyCounter = (value) => {
@@ -56,7 +56,7 @@ class CreatePage extends Component {
       </div>
       {this.state.view === "edit" ? (
       <Editor 
-        list1={this.state.list1}
+        objects={this.state.objects}
         keyCounter={this.state.keyCounter}
         saveObject={this.saveObject}
         saveObjects={this.saveObjects}
@@ -67,7 +67,7 @@ class CreatePage extends Component {
         <>
         <h1>Preview</h1>
         <Render 
-          list1={this.state.list1}
+          objects={this.state.objects}
         />
         </>
       )}

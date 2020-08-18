@@ -8,6 +8,8 @@ from .serializers import TaskSerializer
 
 from .models import Task
 
+import pymysql.cursors
+
 # Create your views here.
 
 
@@ -66,3 +68,92 @@ def taskDelete(request, pk):  # pk = primary key\
     # Delete the item by a simple delete()
     task.delete()
     return Response("Success! Good first step to Django and being an expert")
+
+
+@api_view(['GET'])
+def databaseView(request):
+  context = dict()
+
+  conditions = ['1']
+  for item in request.GET.items():
+    if item[1]:
+      conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
+  query = "SELECT * FROM `ADDRESSES2` WHERE " + " AND ".join(conditions) + " LIMIT 25"
+
+  try:
+    connection = pymysql.connect(host='138.68.243.154',
+                                user='makingbo',
+                                password='+m:u2iP2vLJZ77',
+                                db='makingbo_test_database',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            try:
+              sql = query
+              cursor.execute(sql)
+              result = cursor.fetchall()
+              context = {'entry': result}
+            except:
+              pass
+
+            try:
+              sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'ADDRESSES2'"
+              cursor.execute(sql)
+              result = cursor.fetchall()
+              context['columns'] = result
+            except:
+              pass
+    finally:
+        connection.close()
+  except:
+    pass
+
+  context['extraheadings'] = ('LBTNumber', 'DateAdd', 'DiscAdd', 'ApproxDateAdd', 'SortAdd', 'CommentAdd')
+
+  return Response(context)
+  
+@api_view(['GET'])
+def getBooks(request):
+  context = dict()
+
+  conditions = ['1']
+  for item in request.GET.items():
+    if item[1]:
+      conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
+  query = "SELECT * FROM `books` WHERE " + " AND ".join(conditions) + " LIMIT 25"
+
+  try:
+    connection = pymysql.connect(host='138.68.243.154',
+                                user='makingbo',
+                                password='+m:u2iP2vLJZ77',
+                                db='makingbo_test_database',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            try:
+              sql = query
+              cursor.execute(sql)
+              result = cursor.fetchall()
+              context = {'entry': result}
+            except:
+              pass
+
+            try:
+              sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'books'"
+              cursor.execute(sql)
+              result = cursor.fetchall()
+              context['columns'] = result
+            except:
+              pass
+    finally:
+        connection.close()
+  except:
+    pass
+
+  context['extraheadings'] = tuple()
+
+  return Response(context)
