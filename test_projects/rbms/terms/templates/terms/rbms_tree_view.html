@@ -1,0 +1,8 @@
+<div>{{root.name}}</div>
+{% if root.children %}
+<ul>
+{% for child in root.children.values %}
+  <li>{% include 'terms/rbms_tree_view.html' with root=child %}</li>
+{% endfor %}
+</ul>
+{% endif %}

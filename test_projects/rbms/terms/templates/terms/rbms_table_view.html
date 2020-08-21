@@ -1,0 +1,12 @@
+<tr>
+  <td>{{ root.id }}</td>
+  <td>{{ root.name }}</td>
+  <td>{{ root.parent.name }}</td>
+  <td>{% for key in root.children.keys %}<div>{{ key }}</div>{% endfor %}</td>
+  <td>{% for key in root.related.keys %}<div>{{ key }}</div>{% endfor %}</td>
+  <td>{% for key in root.uf.keys %}<div>{{ key }}</div>{% endfor %}</td>
+</tr>
+
+{% for child in root.children.values %}
+  {% include 'terms/rbms_table_view.html' with root=child %}
+{% endfor %}

@@ -1,0 +1,110 @@
+<h1 id='header'>{{root.name}}</h1>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+<button><a href="{% url 'terms:rbms' %}?category=binding">Binding</a></button>
+<button><a href="{% url 'terms:rbms' %}?category=genre">Genre</a></button>
+<button><a href="{% url 'terms:rbms' %}?category=paper">Paper</a></button>
+<button><a href="{% url 'terms:rbms' %}?category=printing_and_publishing">Printing and Publishing</a></button>
+<button><a href="{% url 'terms:rbms' %}?category=provenance">Provenance</a></button>
+<button><a href="{% url 'terms:rbms' %}?category=relationship_designators">Relationship Designators</a></button>
+<button><a href="{% url 'terms:rbms' %}?category=type">Type</a></button>
+
+<style>
+  td {
+    border: 1px solid black;
+    vertical-align: top;
+  }
+</style>
+
+<div>
+Select View:
+<button id="button_menu">Dropdown Menu</button>
+<button id="button_table">Properties Table</button>
+<button id="button_tree">Tree View</button>
+</div>
+
+<script>
+$("#button_menu").click(function(event) {
+  $(".rbms_menu").show();
+  $(".rbms_table").hide();
+  $(".rbms_tree").hide();
+});
+
+$("#button_table").click(function(event) {
+  $(".rbms_menu").hide();
+  $(".rbms_table").show();
+  $(".rbms_tree").hide();
+});
+
+$("#button_tree").click(function(event) {
+  $(".rbms_menu").hide();
+  $(".rbms_table").hide();
+  $(".rbms_tree").show();
+});
+</script>
+
+<div class="rbms_menu">
+{% include 'terms/rbms_menu.html' with root=root %}
+</div>
+
+<div class="rbms_table" style="display:none;">
+
+<div>Select Term Type:</div>
+<button id="button_descriptors">Descriptors</button>
+<button id="button_nondescriptors">Nondescriptors</button>
+
+<script>
+$("#button_descriptors").click(function(event) {
+  $(".descriptors").show();
+  $(".nondescriptors").hide();
+})
+
+$("#button_nondescriptors").click(function(event) {
+  $(".descriptors").hide();
+  $(".nondescriptors").show();
+});
+</script>
+
+<div class="descriptors">
+<table>
+  <colgroup>
+    <col span="1">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+  </colgroup>
+
+ <tr>
+  <td>TNR</td>
+  <td>Name</td>
+  <td>Parent (Category)</td>
+  <td>Children (Subcategories)</td>
+  <td>Related (Related terms)</td>
+  <td>Used For (Other Names)</td>
+ </tr>
+{% include 'terms/rbms_table_view.html' with root=root %}
+</table>
+</div>
+
+<div class="nondescriptors">
+<table>
+ <tr>
+  <td>TNR</td>
+  <td>Name</td>
+  <td>Use</td>
+ </tr>
+
+  {% for term in nondescriptors %}
+    <tr>
+      <td>{{ term.id }}</td>
+      <td>{{ term.name }}</td>
+      <td>{{ term.use.name }}</td>
+    </tr>
+  {% endfor %}
+</table>
+</div>
+</div>
+
+<div class="rbms_tree" style="display:none;">
+{% include 'terms/rbms_tree_view.html' with root=root %}
+</div>

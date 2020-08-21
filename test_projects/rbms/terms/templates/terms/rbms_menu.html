@@ -1,0 +1,29 @@
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+{% if root.children %}
+<select id="dropdown{{root.name}}" selectedIndex=-1>
+  <option value=""></option>
+{% for child in root.children.values %}
+  <option value="{{child.name}}">{{child.name}}</option>
+{% endfor %}
+</select>
+
+<script>
+  $("[id='dropdown" + "{{ root.name }}" + "']").change(function() {
+    el = document.getElementById("dropdown" + "{{ root.name }}")
+    els = document.getElementsByClassName("submenu{{root.name}}")
+    for (var i = 0; i < els.length; i++) {
+      els[i].style.display = "none"
+    }
+    el3 = document.getElementById("div" + el.value)
+    el3.style.display = "block"
+  });
+</script>
+
+{% for child in root.children.values %}
+  <div id="div{{child.name}}" class="submenu{{root.name}}" style="display: none">
+  {% include 'terms/rbms_menu.html' with root=child %}
+  </div>
+{% endfor %}
+</select>
+{% endif %}
