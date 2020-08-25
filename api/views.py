@@ -143,11 +143,15 @@ def getBooks(request):
 
 @api_view(['POST'])
 def insertPost(request):
-  item = request.data
-  columns = ', '.join(item.keys())
-  values = ', '.join([json.dumps(item) for item in item.values()])
+  data = request.data
 
-  query = "INSERT INTO `Test Table` ({0}) VALUES ({1})".format(columns, values)
-  makeQuery('makingbo_hizami_test', query)
+  postData('makingbo_hizami_test', 'Test Table', data)
 
   return Response("Success!")
+
+def postData(database, table, data):
+  columns = ', '.join(data.keys())
+  values = ', '.join([json.dumps(value) for value in data.values()])
+
+  query = "INSERT INTO `{0}` ({1}) VALUES ({2})".format(table, columns, values)
+  makeQuery(database, query)

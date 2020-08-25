@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { get, post } from "./utilities.js";
 
+import { Formik, Field, Form } from 'formik';
+
 class DebugPage extends Component {
   constructor(props) {
     super(props);
@@ -17,28 +19,45 @@ class DebugPage extends Component {
     });
   }
 
-  handleInputChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    var form = this.state.form;
-    form[name] = value;
-    this.setState({
-      form: form
-    })
-    console.log(this.state.form);
-  }
-
   render() {
     return(
       <>
-        <form>
-          <div><label>ID<input name="ID" onChange={this.handleInputChange} type="number" /></label></div>
-          <div><label>User<input name="User" onChange={this.handleInputChange} type="text" /></label></div>
-          <div><label>Content<input name="Content" onChange={this.handleInputChange} type="text" /></label></div>
-          <div><label>Date/Time<input name="Date" onChange={this.handleInputChange} type="date" /></label></div>
-        </form>
-        <button onClick={this.insertPost}>Submit Post</button>
+        <div>
+          <h1>Sign Up</h1>
+          <Formik
+            initialValues={{
+
+            }}
+            onSubmit={async values => {
+              this.setState({form: values});
+              this.insertPost();
+            }}
+          >
+            <Form>
+              <div>
+              <label>ID</label>
+              <Field type="number" id="ID" name="ID" />
+              </div>
+
+              <div>
+              <label>User</label>
+              <Field id="User" name="User" />
+              </div>
+
+              <div>
+              <label>Content</label>
+              <Field id="Content" name="Content" />
+              </div>
+
+              <div>
+              <label>Date</label>
+              <Field type="date" id="Date" name="Date" />
+              </div>
+
+              <button type="submit">Submit</button>
+            </Form>
+          </Formik>
+        </div>
       </>
     );
   }
