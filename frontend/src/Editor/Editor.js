@@ -15,12 +15,9 @@ class Editor extends Component {
       objects: [],
       editable: true,
       view: "edit",
+      form: {},
     };
 
-  }
-
-  printobjects = () => {
-    console.log(this.state.objects);
   }
 
   createSortables = () => {
@@ -100,6 +97,25 @@ class Editor extends Component {
     el.parentNode.removeChild(el);
   }
 
+  searchBooks = () => { 
+    get("/api/get-books", this.state.form).then((res) => {
+      console.log(res);
+      this.setState({ data: res });
+    });
+  }
+
+  handleInputChange = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    var form = this.state.form;
+    form[name] = value;
+    this.setState({
+      form: form
+    })
+    console.log(this.state.form);
+  }
+
   render() {
     return (
       <>
@@ -116,6 +132,7 @@ class Editor extends Component {
                   deleteObject={this.props.deleteObject}
                   saveObject={this.props.saveObject} 
                   object={object} 
+                  data={this.state.data}
                 />
               </li>
             );
@@ -142,8 +159,20 @@ class Editor extends Component {
         </div>
         <div style={{display: "inline-block", verticalAlign: "top", width: "250px", padding: "5px"}}>
         <div className="component-container">BOOKS</div>
+        {this.state.data && this.state.data.columns != null ? (
+          <form>
+          {this.state.data.columns.map((column) => {
+            return (
+              <div><label>{column.COLUMN_NAME}<input name={column.COLUMN_NAME} onChange={this.handleInputChange} type="text" /></label></div>
+            )
+          })}
+          </form>
+        ) : (
+          <></>
+        )}
+        <div><button onClick={() => this.searchBooks()}>Search</button></div>
         <ul id="bookslist" className="list-container">
-          {this.state.data ? (
+          {this.state.data && this.state.data.entry !== null ? (
           this.state.data.entry.map((object, index) => {
             return(
               <li data-index={index} style={{outline: "1px solid black"}} key={index}>
@@ -158,7 +187,7 @@ class Editor extends Component {
         </div>
         </div>
         <div>
-          {this.state.data ? (
+          {this.state.data && this.state.data.columns && this.state.data.entry ? (
             <table>
             <thead>
             <tr>

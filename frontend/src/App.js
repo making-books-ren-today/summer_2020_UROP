@@ -2,6 +2,7 @@
 import React from "react";
 import "./App.css";
 
+import DebugPage from './DebugPage.js';
 import CreatePage from './Editor/CreatePage.js';
 import Home from './Home.js';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
@@ -16,6 +17,9 @@ function App() {
 				</Route>
 				<Route path="/create">
 					<CreatePage />
+				</Route>
+				<Route path="/debug">
+					<DebugPage />
 				</Route>
 			</Switch>
 		</Router>	

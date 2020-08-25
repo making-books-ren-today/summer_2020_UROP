@@ -6,6 +6,7 @@ class BookComponent extends Component {
     super(props);
     this.state = {
       editable: true,
+      index: 0,
     };
   }
 
@@ -28,6 +29,9 @@ class BookComponent extends Component {
             this.deleteElement(el);
           }
         })
+        this.saveObject(this.props.data.entry[target.dataset.index])
+        console.log(this.props.object);
+        this.deleteElement(target);
       }),
     });
   }
@@ -45,11 +49,25 @@ class BookComponent extends Component {
     this.setState({editable: false})
   }
 
+  saveObject = (value) => {
+    var object = this.props.object;
+    object['content'] = value;
+    this.props.saveSelf(object);
+  }
+
   render() {
     return(
       <>
         <ul className="image-container" id={"book-" + this.props.id}>
+        {this.props.object.content ? (
+          <li>{this.props.object.content.title}</li>
+        ) : (
+          <></>
+        )}
         </ul>
+        <div><span>Title</span><input type="checkbox" /></div>
+        <div><span>Author</span><input type="checkbox" /></div>
+        <div><span>Date</span><input type="checkbox" /></div>
       </>
     );
   }

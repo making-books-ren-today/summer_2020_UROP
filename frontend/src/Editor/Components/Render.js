@@ -25,12 +25,10 @@ class Render extends Component {
 
     return(
       <>
-        <ul>
-          {this.props.objects.map((object, index) => {
-            let Component = Components[object.type]
-            return <div><Component object={object} /></div>
-          })}
-        </ul>
+        {this.props.objects.map((object, index) => {
+          let Component = Components[object.type]
+          return <div style={{outline: "1px solid black"}}><Component object={object} /></div>
+        })}
       </>
     );
   }

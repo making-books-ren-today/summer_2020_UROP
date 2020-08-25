@@ -49,7 +49,12 @@ class ComponentContainer extends Component {
         <div>
         {(() => {
           let Component = Components[this.props.object.type];
-          return <div><Component id={this.props.object.key} object={this.props.object} saveSelf={this.saveSelf} /></div>
+          return <div>
+            <Component 
+              id={this.props.object.key} 
+              data={this.props.data}
+              object={this.props.object} 
+              saveSelf={this.saveSelf} /></div>
         })()}
         </div>
         </div>

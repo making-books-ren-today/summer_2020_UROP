@@ -11,7 +11,11 @@ class BookRender extends Component {
   render() {
     return(
       <>
-        <div>Book</div>
+        {this.props.object.content && this.props.object.content.title ? (
+        <div>{this.props.object.content.title}</div>
+        ) : (
+          <></>
+        )}
       </>
     );
   }

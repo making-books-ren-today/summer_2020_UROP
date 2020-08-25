@@ -9,6 +9,7 @@ from .serializers import TaskSerializer
 from .models import Task
 
 import pymysql.cursors
+import json
 
 # Create your views here.
 
@@ -70,6 +71,30 @@ def taskDelete(request, pk):  # pk = primary key\
     return Response("Success! Good first step to Django and being an expert")
 
 
+def makeQuery(database, query):
+  result = None
+
+  try:
+    connection = pymysql.connect(host='138.68.243.154',
+                                user='makingbo',
+                                password='+m:u2iP2vLJZ77',
+                                db=database,
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+
+    with connection.cursor() as cursor:
+      try:
+        cursor.execute(query)
+        result = cursor.fetchall()
+      except:
+        pass
+      
+  finally:
+    connection.close()
+  
+  return result
+
+
 @api_view(['GET'])
 def databaseView(request):
   context = dict()
@@ -79,41 +104,25 @@ def databaseView(request):
     if item[1]:
       conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
   query = "SELECT * FROM `ADDRESSES2` WHERE " + " AND ".join(conditions) + " LIMIT 25"
+  context['entry'] = makeQuery('makingbo_test_database', query)
 
-  try:
-    connection = pymysql.connect(host='138.68.243.154',
-                                user='makingbo',
-                                password='+m:u2iP2vLJZ77',
-                                db='makingbo_test_database',
-                                charset='utf8mb4',
-                                cursorclass=pymysql.cursors.DictCursor)
-
-    try:
-        with connection.cursor() as cursor:
-            try:
-              sql = query
-              cursor.execute(sql)
-              result = cursor.fetchall()
-              context = {'entry': result}
-            except:
-              pass
-
-            try:
-              sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'ADDRESSES2'"
-              cursor.execute(sql)
-              result = cursor.fetchall()
-              context['columns'] = result
-            except:
-              pass
-    finally:
-        connection.close()
-  except:
-    pass
+  query = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'ADDRESSES2'"
+  context['columns'] = makeQuery('makingbo_test_database', query)
 
   context['extraheadings'] = ('LBTNumber', 'DateAdd', 'DiscAdd', 'ApproxDateAdd', 'SortAdd', 'CommentAdd')
 
   return Response(context)
-  
+
+@api_view(['GET'])
+def getDatabase(request):
+  query = "SELECT * FROM `books` LIMIT 25"
+  context['entry'] = makeQuery('makingbo_test_database', query)
+
+  query = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'books'"
+  context['columns'] = makeQuery('makingbo_test_database', query)
+
+  return Response(context)
+
 @api_view(['GET'])
 def getBooks(request):
   context = dict()
@@ -123,37 +132,22 @@ def getBooks(request):
     if item[1]:
       conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
   query = "SELECT * FROM `books` WHERE " + " AND ".join(conditions) + " LIMIT 25"
+  context['entry'] = makeQuery('makingbo_test_database', query)
 
-  try:
-    connection = pymysql.connect(host='138.68.243.154',
-                                user='makingbo',
-                                password='+m:u2iP2vLJZ77',
-                                db='makingbo_test_database',
-                                charset='utf8mb4',
-                                cursorclass=pymysql.cursors.DictCursor)
-
-    try:
-        with connection.cursor() as cursor:
-            try:
-              sql = query
-              cursor.execute(sql)
-              result = cursor.fetchall()
-              context = {'entry': result}
-            except:
-              pass
-
-            try:
-              sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'books'"
-              cursor.execute(sql)
-              result = cursor.fetchall()
-              context['columns'] = result
-            except:
-              pass
-    finally:
-        connection.close()
-  except:
-    pass
+  query = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'books'"
+  context['columns'] = makeQuery('makingbo_test_database', query)
 
   context['extraheadings'] = tuple()
 
   return Response(context)
+
+@api_view(['POST'])
+def insertPost(request):
+  item = request.data
+  columns = ', '.join(item.keys())
+  values = ', '.join([json.dumps(item) for item in item.values()])
+
+  query = "INSERT INTO `Test Table` ({0}) VALUES ({1})".format(columns, values)
+  makeQuery('makingbo_hizami_test', query)
+
+  return Response("Success!")
