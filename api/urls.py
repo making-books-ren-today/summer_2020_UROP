@@ -5,11 +5,11 @@ from . import views
 urlpatterns = [
     # Add a new url path for a new view
     path('', views.apiOverview, name='api-overview'),
-    path('task-list/', views.taskList, name='task-list'),
-    path('task-detail/<str:pk>/', views.taskDetail, name='task-detail'),
-    path('task-create/', views.taskCreate, name='task-create'),
-    path('task-update/<str:pk>/', views.taskUpdate, name='task-update'),
-    path('task-delete/<str:pk>/', views.taskDelete, name='task-delete'),
+    path('forum/', views.forum),
+    path('post-detail/<str:pk>/', views.postDetail, name='post-detail'),
+    path('post-create/', views.postCreate, name='post-create'),
+    path('post-update/<str:pk>', views.postUpdate, name='post-update'),
+    path('post-delete/<str:pk>', views.postDelete, name='post-delete'),
     path('database-view/', views.databaseView, name='database-view'),
     path('get-books/', views.getBooks, name='get-books'),
     path('insert-post/', views.insertPost, name='insert-post'),
