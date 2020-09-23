@@ -83,27 +83,28 @@ def postDelete(request, pk):  # pk = primary key\
 
 
 def makeQuery(database, query):
-    result = None
+  result = None
 
-    try:
-        connection = pymysql.connect(host='138.68.243.154',
-                                     user='makingbo',
-                                     password='+m:u2iP2vLJZ77',
-                                     db=database,
-                                     charset='utf8mb4',
-                                     cursorclass=pymysql.cursors.DictCursor)
+  try:
+    connection = pymysql.connect(host='138.68.243.154',
+                                user='makingbo',
+                                password='+m:u2iP2vLJZ77',
+                                db=database,
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
 
-        with connection.cursor() as cursor:
-            try:
-                cursor.execute(query)
-                result = cursor.fetchall()
-            except:
-                pass
-
-    finally:
+    with connection.cursor() as cursor:
+      try:
+        cursor.execute(query)
+        result = cursor.fetchall()
+      except:
+        pass
+      finally:
         connection.close()
-
-    return result
+  except:
+    pass
+  
+  return result
 
 
 @api_view(['GET'])
@@ -158,6 +159,39 @@ def getBooks(request):
     return Response(context)
 
 
+@api_view(['GET'])
+def getPeople(request):
+  context = dict()
+
+  conditions = ['1']
+  for item in request.GET.items():
+    if item[1]:
+      conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
+  query = """SELECT DISTINCT `LBT-INDEX`.LBTNumber, `LBT-INDEX`.SurnameIndex, `LBT-INDEX`.ForenamesIndex,
+              ADDRESSES2.Address, ADDRESSES2.StNumber, 
+              DEATHS.DateDd, DEATHS.ApproxDateDd, DEATHS.BeforeDateDd, DEATHS.AfterDateDd
+              FROM `LBT-INDEX` 
+              LEFT JOIN ADDRESSES2 ON (ADDRESSES2.LBTNumber = `LBT-INDEX`.LBTNumber) 
+              LEFT JOIN DEATHS ON (DEATHS.LBTNumber = `LBT-INDEX`.LBTNumber) 
+              WHERE """ + " AND ".join(conditions) + " LIMIT 25"
+
+  result = makeQuery('makingbo_people', query)
+
+  def process(data):
+    result = {}
+    result['LBTNumber'] = data['LBTNumber']
+    result['Surname'] = data['SurnameIndex']
+    result['Forename'] = data['ForenamesIndex']
+    result['Address'] = data['Address']
+    result['StNumber'] = data['StNumber']
+    result['Died'] = data['DateDd'] or data['ApproxDateDd']
+    return result
+
+  people = [process(item) for item in result]
+  context['people'] = people
+
+  return Response(context)
+
 @api_view(['POST'])
 def insertPost(request):
     data = request.data
@@ -169,8 +203,16 @@ def insertPost(request):
 
 def postData(database, table, data):
     columns = ', '.join(data.keys())
-    values = ', '.join([json.dumps(value) for value in data.values()])
+    values = "'" + "', '".join([json.dumps(value) for value in data.values()]) + "'"
 
     query = "INSERT INTO `{0}` ({1}) VALUES ({2})".format(
         table, columns, values)
     makeQuery(database, query)
+
+@api_view(['POST'])
+def insertJSON(request):
+  data = request.data
+
+  postData('makingbo_hizami_test', 'Test JSON', data)
+
+  return Response("data")

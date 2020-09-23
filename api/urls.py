@@ -12,5 +12,7 @@ urlpatterns = [
     path('post-delete/<str:pk>', views.postDelete, name='post-delete'),
     path('database-view/', views.databaseView, name='database-view'),
     path('get-books/', views.getBooks, name='get-books'),
+    path('get-people/', views.getPeople, name='get-people'),
     path('insert-post/', views.insertPost, name='insert-post'),
+    path('insert-json/', views.insertJSON, name='insert-json'),
 ]

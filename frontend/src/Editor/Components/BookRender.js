@@ -9,10 +9,23 @@ class BookRender extends Component {
   }
 
   render() {
+    var book = this.props.object.content;
+    var details = this.props.object.details;
     return(
       <>
-        {this.props.object.content && this.props.object.content.title ? (
-        <div>{this.props.object.content.title}</div>
+        {book && book.title ? (
+        <>
+        <div>{book.title}</div>
+        <div>{Object.keys(book).map((key) =>
+          <>
+          {details && details[key] === true ? (
+          <div>{key}: {book[key]}</div>
+          ) : (
+            <></>
+          )}
+          </>
+        )}</div>
+        </>
         ) : (
           <></>
         )}

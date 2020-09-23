@@ -26,6 +26,7 @@ class TextComponent extends Component {
     return(
       <>
         <textarea 
+          style={{width: "100%"}}
           id={"text" + this.props.id} 
           onChange={(event) => this.saveObject(event.target.value)} 
           readOnly={!this.state.editable}

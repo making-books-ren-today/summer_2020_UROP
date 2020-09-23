@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Sortable from 'sortablejs';
 
+import { Formik, Field, Form } from 'formik';
+
 class BookComponent extends Component {
   constructor(props) {
     super(props);
@@ -55,19 +57,44 @@ class BookComponent extends Component {
     this.props.saveSelf(object);
   }
 
+  editObject = (key, value) => {
+    var object = this.props.object;
+    object[key] = value;
+    this.props.saveSelf(object);
+  }
+
+  handleChange = (evt) => {
+    var target = evt.target;
+    var details = this.props.object.details || {}
+    details[target.name] = target.checked;
+    this.editObject('details', details);
+    console.log(this.props.object);
+  }
+
   render() {
+    const book = this.props.object.content;
+    const details = this.props.object.details;
     return(
       <>
         <ul className="image-container" id={"book-" + this.props.id}>
-        {this.props.object.content ? (
-          <li>{this.props.object.content.title}</li>
+        {book ? (
+          <li>{book.title}</li>
         ) : (
           <></>
         )}
         </ul>
-        <div><span>Title</span><input type="checkbox" /></div>
-        <div><span>Author</span><input type="checkbox" /></div>
-        <div><span>Date</span><input type="checkbox" /></div>
+        {book ? (
+        <form>
+            {Object.keys(book).map((key) =>
+              <div>
+              <label>{key}</label>
+              <input type="checkbox" name={key} onChange={(evt) => this.handleChange(evt)} defaultChecked={details && details[key]} />
+              </div>
+            )}
+        </form>
+        ) : (
+          <></>
+        )}
       </>
     );
   }
