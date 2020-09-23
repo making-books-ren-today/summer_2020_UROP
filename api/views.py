@@ -161,13 +161,13 @@ def getBooks(request):
 
 @api_view(['GET'])
 def getPeople(request):
-  context = dict()
+    context = dict()
 
-  conditions = ['1']
-  for item in request.GET.items():
-    if item[1]:
-      conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
-  query = """SELECT DISTINCT `LBT-INDEX`.LBTNumber, `LBT-INDEX`.SurnameIndex, `LBT-INDEX`.ForenamesIndex,
+    conditions = ['1']
+    for item in request.GET.items():
+        if item[1]:
+            conditions.append("({0} REGEXP '{1}')".format(item[0], item[1]))
+    query = """SELECT DISTINCT `LBT-INDEX`.LBTNumber, `LBT-INDEX`.SurnameIndex, `LBT-INDEX`.ForenamesIndex,
               ADDRESSES2.Address, ADDRESSES2.StNumber, 
               DEATHS.DateDd, DEATHS.ApproxDateDd, DEATHS.BeforeDateDd, DEATHS.AfterDateDd
               FROM `LBT-INDEX` 
@@ -175,22 +175,21 @@ def getPeople(request):
               LEFT JOIN DEATHS ON (DEATHS.LBTNumber = `LBT-INDEX`.LBTNumber) 
               WHERE """ + " AND ".join(conditions) + " LIMIT 25"
 
-  result = makeQuery('makingbo_people', query)
+    result = makeQuery('makingbo_people', query)
 
-  def process(data):
-    result = {}
-    result['LBTNumber'] = data['LBTNumber']
-    result['Surname'] = data['SurnameIndex']
-    result['Forename'] = data['ForenamesIndex']
-    result['Address'] = data['Address']
-    result['StNumber'] = data['StNumber']
-    result['Died'] = data['DateDd'] or data['ApproxDateDd']
-    return result
+    def process(data):
+        result = {}
+        result['LBTNumber'] = data['LBTNumber']
+        result['Surname'] = data['SurnameIndex']
+        result['Forename'] = data['ForenamesIndex']
+        result['Address'] = data['Address']
+        result['StNumber'] = data['StNumber']
+        result['Died'] = data['DateDd'] or data['ApproxDateDd']
+        return result
 
-  people = [process(item) for item in result]
-  context['people'] = people
+    people = [process(item) for item in result]
+    context['people'] = people
 
-  return Response(context)
 
 @api_view(['POST'])
 def insertPost(request):
