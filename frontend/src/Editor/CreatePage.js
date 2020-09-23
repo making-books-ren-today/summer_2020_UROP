@@ -5,7 +5,7 @@ import Sortable from 'sortablejs';
 import arrayMove from 'array-move';
 
 import Editor from "./Editor.js";
-import Render from "./Components/Render.js";
+import Render from "./Render/Render.js";
 import "./Editor.css";
 
 class CreatePage extends Component {
@@ -13,8 +13,9 @@ class CreatePage extends Component {
     super(props);
     this.state = {
       pages: [],
+      currentPage: {title: "", objects: []},
       objects: [],
-      currentIndex: 0,
+      currentIndex: -1,
       editable: true,
       keyCounter: 0,
       view: "edit",
@@ -56,17 +57,40 @@ class CreatePage extends Component {
     this.setState({keyCounter: value});
   }
 
-  deleteElement = (el) => {
-    console.log(el);
-    el.parentNode.removeChild(el);
+  addPage = () => {
+    var newPage = {title: "New Page", objects: []};
+    this.setState({pages: this.state.pages.concat([newPage])});
+    this.setState({objects: newPage.objects})
   }
 
   selectPage = (index) => {
     var pages = this.state.pages;
-    pages[this.state.currentIndex] = this.state.objects;
+    var currentPage = this.state.currentPage;
+    currentPage.objects = this.state.objects
+    if (this.state.currentIndex >= 0) pages[this.state.currentIndex] = currentPage;
     this.setState({pages: pages});
-    this.setState({objects: this.state.pages[index], currentIndex: index});
+    this.setState({currentPage: this.state.pages[index], objects: this.state.pages[index].objects, currentIndex: index});
+    this.setState({view: "edit"});
   }
+
+  changePageTitle = (index, title) => {
+    var pages = this.state.pages;
+    var page = pages[index];
+    page.title = title;
+    pages[index] = page;
+    this.setState({pages: pages});
+  }
+
+  /*
+          <div style={{display: "inline-block", padding: "5px", margin: "5px"}}>
+          <div className="preview">
+            <Render 
+              objects={page.objects}
+            />
+          </div>
+          <span>{page.title}</span><button onClick={() => this.selectPage(index)}>Select</button>
+          </div>
+          */
 
   render() {
     return (
@@ -79,22 +103,23 @@ class CreatePage extends Component {
       {this.state.view === "select" ? (
         <>
         <div>Select Page</div>
-        <button onClick={() => this.setState({pages: this.state.pages.concat([[]])})}>Add Page</button>
+        <button onClick={() => this.addPage()}>Add Page</button>
         <div>
         {this.state.pages.map((page, index) =>
-          <div style={{display: "inline-block", padding: "5px", margin: "5px"}}>
-          <div className="preview">
-            <Render 
-              objects={page}
-            />
-          </div>
-          <span>{index}</span><button onClick={() => this.selectPage(index)}>Select</button>
+          <div className="component-container">
+            <button onClick={() => this.selectPage(index)}>Select</button>
+            <span> {page.title} </span>
+            <span style={{float: "right"}}>
+              <input id={"pagetitle" + index} type="text" />
+              <button style={{float: "right"}} onClick={() => this.changePageTitle(index, document.getElementById("pagetitle" + index).value)}>Change Name</button>
+            </span>
           </div>
         )}
         </div>
         </>
       ) : this.state.view === "edit" ? (
         <Editor 
+          pageName={this.state.currentPage.title}
           objects={this.state.objects}
           books={this.state.books}
           searchBooks={this.searchBooks}

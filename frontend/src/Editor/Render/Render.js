@@ -22,13 +22,20 @@ class Render extends Component {
       'image': ImageRender,
       'book': BookRender,
     }
+    const objects = this.props.objects;
+    console.log("Objects");
+    console.log(objects);
 
     return(
       <>
-        {this.props.objects.map((object, index) => {
-          let Component = Components[object.type]
-          return <div style={{outline: "1px solid black"}}><Component object={object} /></div>
-        })}
+        {objects ? (
+          objects.map((object, index) => {
+            let Component = Components[object.type]
+            return <div style={{outline: "1px solid black"}}><Component object={object} /></div>
+          })
+        ) : (
+          <div>No page selected.</div>
+        )}
       </>
     );
   }

@@ -90,6 +90,7 @@ class Editor extends Component {
     return (
       <>
       <h1>Edit</h1>
+      <h2>Current Page: {this.props.pageName}</h2>
       <div style={{display: "flex", padding: "5px", width: "100%", outline: "1px solid black"}}>
         <ListContainer 
           objects={this.props.objects}
