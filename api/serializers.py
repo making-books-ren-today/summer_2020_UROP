@@ -1,8 +1,12 @@
+# REST -> Serializers library
 from rest_framework import serializers
-from .models import Task
+from .models import Post
 
-class TaskSerializer(serializers.ModelSerializer):
+# Serialize to convert objects into JSON format to be stored in the backend
+
+
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Task
+        model = Post
         # Tell which fields to be displayed
-        fields = '__all__'
+        fields = ('id', 'title', 'author', 'description', 'created_at')
