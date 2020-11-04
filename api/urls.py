@@ -15,4 +15,8 @@ urlpatterns = [
     path('get-people/', views.getPeople, name='get-people'),
     path('insert-post/', views.insertPost, name='insert-post'),
     path('insert-json/', views.insertJSON, name='insert-json'),
+
+    path('create-user/', views.createUser, name='create-user'),
+    path('login-user/', views.loginUser, name='login-user'),
+    path('logout-user/', views.logoutUser, name='login-user'),
 ]

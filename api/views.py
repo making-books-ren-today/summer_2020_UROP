@@ -8,9 +8,12 @@ from rest_framework import generics
 
 from .models import Post
 from .serializers import PostSerializer
+from django.contrib.auth.models import User
 
 import pymysql.cursors
 import json
+
+from .utilities import *
 
 # Create your views here.
 
@@ -80,31 +83,6 @@ def postDelete(request, pk):  # pk = primary key\
     # Delete the item by a simple delete()
     post.delete()
     return Response("Success!")
-
-
-def makeQuery(database, query):
-  result = None
-
-  try:
-    connection = pymysql.connect(host='138.68.243.154',
-                                user='makingbo',
-                                password='+m:u2iP2vLJZ77',
-                                db=database,
-                                charset='utf8mb4',
-                                cursorclass=pymysql.cursors.DictCursor)
-
-    with connection.cursor() as cursor:
-      try:
-        cursor.execute(query)
-        result = cursor.fetchall()
-      except:
-        pass
-      finally:
-        connection.close()
-  except:
-    pass
-  
-  return result
 
 
 @api_view(['GET'])
@@ -215,3 +193,27 @@ def insertJSON(request):
   postData('makingbo_hizami_test', 'Test JSON', data)
 
   return Response("data")
+
+@api_view(['POST'])
+def createUser(request):
+    username = request.data['username']
+    email = request.data['email']
+    password = request.data['password']
+    user = User.objects.create_user(username, email, password)
+    return Response("Success!")
+
+
+@api_view(['POST'])
+def loginUser(request):
+    username = request.data['username']
+    password = request.data['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        return Response(user.id)
+    else:
+        return Response("Failure")
+
+
+@api_view(['POST'])
+def logoutUser(request):
+    logout()
