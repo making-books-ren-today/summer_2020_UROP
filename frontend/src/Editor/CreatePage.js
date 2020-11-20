@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { get, post } from '../utilities.js';
 
+import {useParams, Redirect} from "react-router-dom";
+
 import Sortable from 'sortablejs';
 import arrayMove from 'array-move';
 
@@ -23,6 +25,15 @@ class CreatePage extends Component {
   }
 
   componentDidMount() {
+    const siteId = this.props.computedMatch.params.siteId;
+    const pageId = this.props.computedMatch.params.pageId;
+    this.setState({ siteId: siteId, pageId: pageId});
+
+    get(`/api/get-page/${siteId}/${pageId}`).then((res) => {
+      console.log(res);
+      this.setState({ pageData: res });
+    });
+
     get("/api/get-books").then((res) => {
       this.setState({ books: res });
     });
@@ -57,22 +68,6 @@ class CreatePage extends Component {
     this.setState({keyCounter: value});
   }
 
-  addPage = () => {
-    var newPage = {title: "New Page", objects: []};
-    this.setState({pages: this.state.pages.concat([newPage])});
-    this.setState({objects: newPage.objects})
-  }
-
-  selectPage = (index) => {
-    var pages = this.state.pages;
-    var currentPage = this.state.currentPage;
-    currentPage.objects = this.state.objects
-    if (this.state.currentIndex >= 0) pages[this.state.currentIndex] = currentPage;
-    this.setState({pages: pages});
-    this.setState({currentPage: this.state.pages[index], objects: this.state.pages[index].objects, currentIndex: index});
-    this.setState({view: "edit"});
-  }
-
   changePageTitle = (index, title) => {
     var pages = this.state.pages;
     var page = pages[index];
@@ -93,31 +88,19 @@ class CreatePage extends Component {
           */
 
   render() {
+    const userId = this.props.userId;
+    if (userId == undefined) { return(<div>Loading</div>); }
+    if (userId != this.props.computedMatch.params.userId) { return(<Redirect to="/" />); }
+
     return (
       <>
+      <h1>Site Id: {this.state.siteId}</h1>
+      <h1>Page Id: {this.state.pageId}</h1>
       <div>
-        <button onClick={() => this.setState({view: "select"})}>Select</button>
         <button onClick={() => this.setState({view: "edit"})}>Edit</button>
         <button onClick={() => this.setState({view: "preview"})}>Preview</button>
       </div>
-      {this.state.view === "select" ? (
-        <>
-        <div>Select Page</div>
-        <button onClick={() => this.addPage()}>Add Page</button>
-        <div>
-        {this.state.pages.map((page, index) =>
-          <div className="component-container">
-            <button onClick={() => this.selectPage(index)}>Select</button>
-            <span> {page.title} </span>
-            <span style={{float: "right"}}>
-              <input id={"pagetitle" + index} type="text" />
-              <button style={{float: "right"}} onClick={() => this.changePageTitle(index, document.getElementById("pagetitle" + index).value)}>Change Name</button>
-            </span>
-          </div>
-        )}
-        </div>
-        </>
-      ) : this.state.view === "edit" ? (
+      {this.state.view === "edit" ? (
         <Editor 
           pageName={this.state.currentPage.title}
           objects={this.state.objects}

@@ -14,10 +14,20 @@ class DebugPage extends Component {
   }
 
   componentDidMount = () => {
+    /*
     this.setState({dataLoaded: false})
     get("/api/get-people").then((res) => {
       this.setState({data: res, dataLoaded: true});
       console.log(this.state.data);
+    });
+    */
+  }
+
+  addPage = () => {
+    const id = 1;
+    var data = {title: 'Additional Page', content: {x: 1, y: 2, z: 3}};
+    post("/api/add-page/" + id, data).then((res) => {
+      console.log(res);
     });
   }
 
@@ -43,9 +53,92 @@ class DebugPage extends Component {
     });
   }
 
+  createUser = () => {
+    console.log(this.state.registration);
+    post("/api/create-user/", this.state.registration).then((res) => {
+      console.log(res);
+    }) 
+  }
+
+  loginUser = () => {
+    post("/api/login-user/", this.state.login).then((res) => {
+      console.log(res);
+      this.props.handleLogin(res);
+    }) 
+  }
+
+  logoutUser = () => {
+    get("/api/logout-user/").then((res) => {
+      this.props.handleLogout();
+    }) 
+  }
+
   render() {
     return(
       <>
+        <div>
+          Login
+          <Formik
+            initialValues={{
+
+            }}
+            onSubmit={async values => {
+              this.setState({login: values});
+              this.loginUser();
+            }}
+          >
+            <Form>
+              <div>
+              <label>Username</label>
+              <Field id="username" name="username" />
+              </div>
+
+              <div>
+              <label>Password</label>
+              <Field id="password" name="password" />
+              </div>
+
+              <button type="submit">Submit</button>
+            </Form>
+          </Formik>
+        </div>
+        
+        <button onClick={() => this.logoutUser()}>Logout</button>
+
+        <button onClick={() => this.addPage()}>Add Page</button>
+
+        <div>
+          Register
+          <Formik
+            initialValues={{
+
+            }}
+            onSubmit={async values => {
+              this.setState({registration: values});
+              this.createUser();
+            }}
+          >
+            <Form>
+              <div>
+              <label>Username</label>
+              <Field id="username" name="username" />
+              </div>
+
+              <div>
+              <label>Email</label>
+              <Field type="email" id="email" name="email" />
+              </div>
+
+              <div>
+              <label>Password</label>
+              <Field id="password" name="password" />
+              </div>
+
+              <button type="submit">Submit</button>
+            </Form>
+          </Formik>
+        </div>
+
         <div>
           <button onClick={() => this.insertJSON()}>INSERT JSON</button>
           <h1>Post</h1>

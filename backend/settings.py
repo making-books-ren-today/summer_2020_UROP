@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'makingbo_django_database',
+        'USER': 'makingbo',
+        'PASSWORD': '+m:u2iP2vLJZ77',
+        'HOST': '138.68.243.154',
+        'PORT': '',
     }
 }
 
