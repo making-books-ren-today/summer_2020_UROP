@@ -7,6 +7,7 @@ import DebugPage2 from './DebugPage2.js';
 import CreatePage from './Editor/CreatePage.js';
 import SiteOverview from './Editor/SiteOverview.js';
 import UserOverview from './Editor/UserOverview.js';
+import Registration from './Registration.js';
 import Home from './Home.js';
 import {BrowserRouter as Router, Switch, Route, Link, useParams} from "react-router-dom";
 
@@ -80,7 +81,10 @@ class App extends Component {
 						path="/debug2"
 						userId = {this.state.userId}
 					/>
-				
+					
+					<Registration 
+						path="/register"
+					/>
 				</Switch>
 			</Router>	
 			</>

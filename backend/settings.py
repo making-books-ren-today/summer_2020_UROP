@@ -85,7 +85,7 @@ DATABASES = {
         'USER': 'makingbo',
         'PASSWORD': '+m:u2iP2vLJZ77',
         'HOST': '138.68.243.154',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 

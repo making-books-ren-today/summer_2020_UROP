@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from .models import Post
 from .serializers import PostSerializer
+from django.contrib.auth.models import User
 
 import pymysql.cursors
 import json
